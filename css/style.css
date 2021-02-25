@@ -78,7 +78,7 @@ body {
     width: 40%;
     height: 10rem;
     padding: 2rem 2rem;
-    border-radius: 2rem;
+    border-radius: .9rem;
     background-color: khaki;
     background-color: var(--twitter-blue-gray);
     box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
