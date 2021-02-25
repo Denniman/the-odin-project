@@ -1,6 +1,7 @@
 const container = document.querySelector('.books__container')
 const bookTitle = document.querySelector('#bookTitle') 
-const form = document.querySelector('.form')
+const form = document.querySelector('.modal--form')
+const modal = document.querySelector('.modal')
 
 const myBoolLibrary = []
 
@@ -12,7 +13,6 @@ function render(array) {
         container.appendChild(newBook)
     })
 }
-
 
 
 form.addEventListener('submit', (e) => {
@@ -27,3 +27,10 @@ function addBookToLibrary(input) {
     });
 }
 
+document.querySelector('.close').addEventListener('click', () => {
+    modal.style.display = 'none'
+})
+
+document.querySelector('#addBook').addEventListener('click', () => {
+    modal.style.display = 'block'
+})
