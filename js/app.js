@@ -1,31 +1,40 @@
 const container = document.querySelector('.books__container')
-const bookTitle = document.querySelector('#bookTitle') 
 const form = document.querySelector('.modal--form')
 const modal = document.querySelector('.modal')
 
-const myBoolLibrary = []
 
-function render(array) {
-    return array.forEach(item => {
-        container.innerHTML = ''
-        const newBook = document.createElement('p')
-        newBook.textContent = item.book
-        container.appendChild(newBook)
-    })
-}
+const myBookLibrary = []
 
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    addBookToLibrary(bookTitle.value)
-    render(myBoolLibrary)
+    addBookToLibrary(e)
+    container.innerHTML = renderBooks()
+    modal.style.display = 'none'
+    form.reset()
 })
 
-function addBookToLibrary(input) {
-    return myBoolLibrary.push({
-        book: input
-    });
+function addBookToLibrary({target}) {
+    
+    const book = {
+        title: target.bookTitle.value,
+        author: target.bookAuthor.value,
+        pages: target.bookNumber.value
+    }
+    
+ myBookLibrary.unshift(book);
 }
+
+function renderBooks() {
+    return myBookLibrary.map(({title, author, pages}) => {
+     return `<article class="card">
+          <h3>Book Title: ${title}</h3>
+          <h3>Book Author: ${author}</h3>
+          <h3>Book Pages: ${pages}</h3>
+      </article>`
+    })
+  }
+  
 
 document.querySelector('.close').addEventListener('click', () => {
     modal.style.display = 'none'
@@ -34,3 +43,4 @@ document.querySelector('.close').addEventListener('click', () => {
 document.querySelector('#addBook').addEventListener('click', () => {
     modal.style.display = 'block'
 })
+
